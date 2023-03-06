@@ -1,0 +1,15 @@
+.action_btn {
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .action_btn.delete {
+    background-color: #fa41384d;
+    color: #fa4138;
+  }
+  .action_btn.edit {
+    background-color: #ffbb344d;
+    color: #ffbb34;
+  }

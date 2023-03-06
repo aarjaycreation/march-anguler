@@ -25,9 +25,20 @@
               "src/assets"
             ],
             "styles": [
+              
+              "./node_modules/filepond/dist/filepond.min.css",
+              "./node_modules/ngx-toastr/toastr.css",
+              "./node_modules/datatables.net-dt/css/jquery.dataTables.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/boxicons/css/boxicons.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/datatables.net/js/jquery.dataTables.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/boxicons/dist/boxicons.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -89,10 +100,14 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "6ee4367d-f1b3-40c8-bb74-9e906e2026a2"
   }
 }

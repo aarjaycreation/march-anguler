@@ -1,0 +1,78 @@
+<section>
+    <div class="d-flex align-item-center justify-content-center">
+
+
+        <div class="card card-1 align-middle">
+            <div class="card-heading"></div>
+            <div class="card-body">
+                <h2 class="title mb-5g text-center">Registration Info</h2>
+                <form (ngSubmit)="onSubmit()">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="input-group">
+                                <input class="input--style-1" type="text" placeholder="MOBILE NUMBER" name="mobile"
+                                    maxlength="10" [(ngModel)]="mobile" (keypress)="numberOnly($event)">
+                                <i class='bx bx-phone bx-sm input-icon'></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="input-group">
+                                <input class="input--style-1" type="date" placeholder="BIRTHDATE" name="birthday"
+                                    [(ngModel)]="birthday">
+                            </div>
+                        </div>
+                        <div class="col-lg-8 ">
+                            <div class="input-group">
+                                <input class="input--style-1" type="text" placeholder="PIN CODE" name="pincode"
+                                    maxlength="6" [(ngModel)]="pincode"  (keypress)="numberOnly($event)" (change)="getpincode($event)">
+                                <i class='bx bx-code bx-sm input-icon'></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 ">
+                            <div class="input-group">
+                                <input type="text" value="{{state}}" placeholder="State" class="input--style-1 custom-select" name="state" [(ngModel)]="state" disabled="true">
+                                <!-- <select class="input--style-1 custom-select" name="state" [(ngModel)]="state">
+                                    <option disabled="disabled" selected="selected">CHOOSE STATE</option>
+                                    <option value="delhi">delhi</option>
+                                    <option value="rajasthan">rajasthan</option>
+                                    <option value="maharastra">maharastra</option>
+                                    <option value="Other">Other</option>
+                                </select> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-8 ">
+                            <div class="input-group">
+                            <input type="text" value="{{city}}" placeholder="City" class="input--style-1 custom-select" name="city" [(ngModel)]="city" disabled="true">
+                                <!-- <select class="input--style-1 custom-select" name="city" [(ngModel)]="city">
+                                    <option disabled="disabled" selected="selected">CHOOSE CITY</option>
+                                    <option value="CITY 1">CITY 1</option>
+                                    <option value="CITY 2">CITY 2</option>
+                                    <option value="CITY 3">CITY 3</option>
+                                </select> -->
+                            </div>
+                        </div>
+
+                        <div class="col-lg-8 ">
+                            <div >
+                                <div class=" mx-5 file_border" (click)="chooseFile.click()">
+                                    <input class="text-center mt-2 file_name" disabled type="text" placeholder="Please Choose File" id="filename">
+                                    <!-- <div class="btn btn-primary" (click)="chooseFile.click()">CHOOSE</div> -->
+                                </div>
+                                <input hidden type="file"  multiple #chooseFile (change)="fileUpload($event)">
+                            </div>
+                            <!-- <file-pond #myPond [options]="pondOptions" [files]="pondFiles" (oninit)="pondHandleInit()"
+                                (onaddfile)="pondHandleAddFile($event)" (change)="getFileDetails($event)">
+                            </file-pond> -->
+                        </div>
+
+
+                    </div>
+                    <div class="p-t-20 text-center mt-5">
+                        <button class="btn btn--radius btn--green" type="submit">Submit</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
