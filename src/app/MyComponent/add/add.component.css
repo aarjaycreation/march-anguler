@@ -4,6 +4,8 @@
   font-weight: 600;
 }
 .file_border{
+  display: flex;
+  align-items: center;
   height: 3rem;
   border: dotted 2px gray;
   border-radius: 5px;

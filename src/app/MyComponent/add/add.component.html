@@ -53,12 +53,15 @@
                         </div>
 
                         <div class="col-lg-8 ">
-                            <div >
-                                <div class=" mx-5 file_border" (click)="chooseFile.click()">
-                                    <input class="text-center mt-2 file_name" disabled type="text" placeholder="Please Choose File" id="filename">
-                                    <!-- <div class="btn btn-primary" (click)="chooseFile.click()">CHOOSE</div> -->
+                            <div class="d-flex align-item-center justify-content-center">
+                                <div class="mx-5 file_border" >
+                                    <input class="text-center file_name" disabled type="text" placeholder="Please Choose File" id="filename">
                                 </div>
-                                <input hidden type="file"  multiple #chooseFile (change)="fileUpload($event)">
+                                <div class="btn btn-primary" (click)="chooseFile.click()">
+                                    <i class='bx bxs-camera-plus bx-sm mt-2' ></i>
+                                </div>
+                               
+                                <input hidden type="file" name="fileInput"  multiple #chooseFile (change)="onChange($event)">
                             </div>
                             <!-- <file-pond #myPond [options]="pondOptions" [files]="pondFiles" (oninit)="pondHandleInit()"
                                 (onaddfile)="pondHandleAddFile($event)" (change)="getFileDetails($event)">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { Observable, Subscriber } from 'rxjs';
 
 
 interface list {
@@ -25,24 +26,14 @@ export class AddComponent implements OnInit {
   longitude: any;
   myFiles: string[] = [];
   formData: any[] = [];
-  lists: list[] = [
-    {
-      pincode: '332027',
-      state: 'Rajasthan',
-      city: 'Sikar'
-    },
-    {
-      pincode: '411041',
-      state: 'Maharastra',
-      city: 'Pune'
-    },
-    {
-      pincode: '302001',
-      state: 'Rajasthan',
-      city: 'Jaipur'
-    },
+  lists: list[] = []
 
-  ]
+
+  myimage!: Observable<any>;
+  base64!: any;
+
+
+  base64String: string | undefined;
 
   constructor(private toastr: ToastrService, private http: HttpClient) { }
 
@@ -238,14 +229,32 @@ export class AddComponent implements OnInit {
     // const lng = event.target.files.length;
     // console.log(lng);
     if (event.target.files.length == 1) {
-      const file = event.target.files[0].name;
-      const fileName = document.getElementById("filename") as HTMLInputElement | null;
-      if (fileName != null) {
-        fileName.value = file;
+      const file = event.target.files[0];
+      const fileName = event.target.files[0].name;
+      const fileID = document.getElementById("filename") as HTMLInputElement | null;
+      if (fileID != null) {
+        fileID.value = fileName;
       }
 
+
+
+
+      // var reader = new FileReader();
+      // reader.readAsDataURL(file);
+      // reader.onload = function () {
+      //   var base64String = reader.result;
+      //   //this.base64String = base64String as string;
+      //   console.log(base64String);
+
+
+      // };
+
+      // reader.onerror = function (error) {
+      //   console.log('Error: ', error);
+      // };
+
+      //console.log(this.base64String);
       const file1 = event.target.files[0];
-      console.log(file1)
       this.myFiles.push(file1);
       return;
     }
@@ -261,6 +270,74 @@ export class AddComponent implements OnInit {
     }
 
 
+  }
+
+
+
+  onChange(event: any) {
+
+    const target = $(event.target as HTMLInputElement);
+    const file = event.target.files[0];
+    // callback 
+    this.convertToBase64(file);
+
+    if (event.target.files.length == 1) {
+      const file = event.target.files[0];
+      const fileName = event.target.files[0].name;
+      const fileID = document.getElementById("filename") as HTMLInputElement | null;
+      if (fileID != null) {
+        fileID.value = fileName;
+      }
+    
+      return;
+    }
+    else {
+      const fileName = document.getElementById("filename") as HTMLInputElement | null;
+      if (fileName != null) {
+        const length = event.target.files.length;
+        fileName.value = (length + " files");
+      }
+    }
+  }
+
+
+
+
+
+
+  convertToBase64(file: File) {
+    const obb = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    });
+    obb.subscribe((d) => {
+      this.myimage = d;
+      this.base64 = d;
+      console.log(this.base64)
+      if(file){
+        this.myFiles.push(this.base64);
+        console.log(this.myFiles);
+      }
+      else{
+        //this.myFiles.push(file);
+      }
+    })
+
+    
+    
+  }
+
+  readFile(file: File, subscriber: Subscriber<any>) {
+    const filereader = new FileReader();
+    filereader.readAsDataURL(file);
+    filereader.onload = () => {
+      subscriber.next(filereader.result);
+      subscriber.complete();
+      //console.log(filereader.result);
+    };
+    filereader.onerror = (error) => {
+      subscriber.error(error);
+      subscriber.complete();
+    };
   }
 
 

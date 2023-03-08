@@ -11,13 +11,13 @@ import { DataTablesModule } from 'angular-datatables';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-
 // import filepond module
 import { FilePondModule, registerPlugin } from 'ngx-filepond';
 
 // import and register filepond file type validation plugin
 // import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 // registerPlugin(FilePondPluginFileValidateType);
+
 
 
 @NgModule({
