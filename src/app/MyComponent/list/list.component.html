@@ -22,13 +22,20 @@
         <td>{{item.state}}</td>
         <td>{{item.city}}</td>
         <td>latitude:- {{item.latitude}},<br> longitude:- {{item.longitude}}</td>
-        <td><img src="" alt=""></td>
         <td>
-          <div class="d-flex justify-content-center align-item-center gap-2">
-            <button class="btn action_btn edit" (click)="editItem(this.item)">edit</button>
-            <button class="btn action_btn delete" (click)="removeItem(this.item)">delete</button>
-          </div>
-        </td>
+      <tr *ngFor="let image of item.files; let i = index;">
+        {{i+1}}
+        <img src="{{image}}" alt="" [attr.data-index]="i+1" width="40%">
+      </tr>
+    
+
+      </td>
+      <td>
+        <div class="d-flex justify-content-center align-item-center gap-2">
+          <button class="btn action_btn edit" (click)="editItem(this.item)">edit</button>
+          <button class="btn action_btn delete" (click)="removeItem(this.item)">delete</button>
+        </div>
+      </td>
       </tr>
     </tbody>
   </table>

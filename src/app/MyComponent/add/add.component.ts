@@ -278,8 +278,11 @@ export class AddComponent implements OnInit {
 
     const target = $(event.target as HTMLInputElement);
     const file = event.target.files[0];
+    for (var i = 0; i < event.target.files.length; i++) {
+      this.convertToBase64(event.target.files[i]);
+    }
     // callback 
-    this.convertToBase64(file);
+    
 
     if (event.target.files.length == 1) {
       const file = event.target.files[0];
@@ -288,7 +291,6 @@ export class AddComponent implements OnInit {
       if (fileID != null) {
         fileID.value = fileName;
       }
-    
       return;
     }
     else {
@@ -312,7 +314,8 @@ export class AddComponent implements OnInit {
     obb.subscribe((d) => {
       this.myimage = d;
       this.base64 = d;
-      console.log(this.base64)
+      
+      //console.log(this.base64)
       if(file){
         this.myFiles.push(this.base64);
         console.log(this.myFiles);
